@@ -157,8 +157,8 @@ def getAdList():
     fs.close()
 
 
-def genCertifiedConf():
-    f = codecs.open('template/ss_certifiedlist_conf', 'r','utf-8')
+def genCertifiedConf(ifp='template/ss_certifiedlist_conf',ofp='configFileHere/certifiedlist.conf'):
+    f = codecs.open(ifp, 'r','utf-8')
     certifiedlist = codecs.open('list/certifiedlist.txt', 'r','utf-8')
     adlist = codecs.open('list/adlist.txt', 'r','utf-8')
     proxy = codecs.open('ServerConfig.txt', 'r', 'utf8')
@@ -175,7 +175,7 @@ def genCertifiedConf():
     file_content = file_content.replace('__CERTIFIEDLIST__', certifiedlist_buffer)
     file_content = file_content.replace('__Proxy__', proxy_buffer)
 
-    confs = codecs.open('configFileHere/certifiedlist.conf', 'w','utf-8')
+    confs = codecs.open(ofp, 'w','utf-8')
     confs.write(file_content)
     confs.close()
 
@@ -211,6 +211,8 @@ def main():
 
     print ('Generate config file: certifiedlist.conf')
     genCertifiedConf()
+    genCertifiedConf(ifp='template/ss_certifiedlist_sradb_conf',ofp='configFileHere/certifiedlist_sradb.conf')
+    genCertifiedConf(ifp='template/ss_certifiedlist_noadb_conf',ofp='configFileHere/certifiedlist_noadb.conf')
     print ('Generate config file: whitelist.conf')
     genWhiteConf()
     print ('All done!')
