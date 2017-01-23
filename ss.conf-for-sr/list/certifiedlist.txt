@@ -1,5 +1,5 @@
 // SS config file for SR with certified list 
-// updated on 2017-01-23 23:40:43
+// updated on 2017-01-23 23:53:56
 
 DOMAIN-SUFFIX,4tern.com,Proxy,force-remote-dns
 DOMAIN-SUFFIX,85.17.73.31,Proxy,force-remote-dns
