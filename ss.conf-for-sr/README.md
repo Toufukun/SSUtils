@@ -1,8 +1,8 @@
-##ss.conf for Sh****rocket!
-This is a conf file for S*****rocket!
+##ss.conf for Shadowrocket!
+This is a conf file for Shadowrocket!
 **Generally, it's forked from `ss.conf for Surge` by `R0uter`**
 
-In order to use config in Sh****rocket.
+In order to use config in Shadowrocket.
 
 Difference from `ss.conf for Surge`:
 
@@ -16,7 +16,7 @@ Difference from `ss.conf for Surge`:
 
 The MIT License (MIT)
 
-Copyright (c) 2015-2016 R0uter
+Copyright (c) 2015-2016 R0uter, Toufukun
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

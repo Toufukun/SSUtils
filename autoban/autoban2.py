@@ -40,7 +40,7 @@ if __name__ == '__main__':
                         help='with how many failure times it should be '
                              'considered as an attack')
     parser.add_argument('-s', '--ipquerysource', default='ip-api',
-                        choices=['ip138','taobao','ip-api'],
+                        choices=['ip138','taobao','ip-api','freegeoip'],
                         help='IP geolocation information source')
     group = parser.add_mutually_exclusive_group()
     group.add_argument('-e', '--exclude', help='IP addresses or '
@@ -93,8 +93,14 @@ if __name__ == '__main__':
                         info=json.loads(urllib2.urlopen(req).read())
                         geo=' '.join([ip,info['country'],info['regionName'],info['city'],info['isp']])
                         print(geo,'Y(Enter)/N?',end='')
+                    elif config.ipquerysource=='freegeoip':
+                        req=urllib2.Request('http://freegeoip.net/json/'+ip)
+                        info=json.loads(urllib2.urlopen(req).read())
+                        geo=' '.join([ip,info['country_name'],info['region_name'],info['city']])
+                        print(geo,'Y(Enter)/N?',end='')
                     else:
                         # geo=ip+' unknown'
+                        geo=None
                         print('the IP location source is not supported')
                         raise Exception()
                 except Exception, e:
@@ -106,10 +112,10 @@ if __name__ == '__main__':
                     if choice.strip()=='' or choice.strip().upper()=='Y':
                         choice=True
                 elif config.exclude:
-                    if not re.search(config.exclude,geo,re.I):
+                    if not (geo and re.search(config.exclude,geo,re.I)):
                         choice=True
                 elif config.match:
-                    if re.search(config.match,geo,re.I):
+                    if geo and re.search(config.match,geo,re.I):
                         choice=True
                 else:
                     choice=True
